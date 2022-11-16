@@ -42,9 +42,23 @@ def load(filename):
 					tokens = lines[i].strip().split()
 	return wordInDoc, wordInCollection
 
+def calculateTFIDF(wordInDoc, wordInCollection):
+
+	nbDocs = len(wordInDoc)
+	
+	for doc in wordInDoc:
+		sizeDoc = 0
+		for word in wordInDoc[doc]:
+			sizeDoc += wordInDoc[doc][word][0]
+		for word in wordInDoc[doc]:
+			TF = wordInDoc[doc][word][0] / sizeDoc
+			IDF = np.log(nbDocs / wordInCollection[word])
+			wordInDoc[doc][word][1] = TF*IDF
+	
+	return wordInDoc
+
 wordInDoc, wordInCollection = load("/home/emmanourry/Documents/ET5/Extraction info-texte/Projet/Search_Engine/CISI/CISI.ALL")
 
-print(wordInDoc)
-print("------------------")
-print(wordInCollection)
+wordInDoc_TFIDF = calculateTFIDF(wordInDoc, wordInCollection)
 
+print(wordInDoc_TFIDF)
