@@ -1,3 +1,5 @@
+#from scipy.spatial import distance
+
 import loadData
 import loadQueries
 import calculateTFIDF
@@ -13,6 +15,6 @@ wordInQueries = loadQueries.loadQueries("CISI/CISI.QRY")
 wordInDoc_TFIDF, wordInCollection_IDF = calculateTFIDF.calculateTFIDF(wordInDoc, wordInCollection)
 
 # Calculate TF for each word of queries
-wordInQueries_TF = calculateTFIDF_query.calculateTFIDF_query(wordInCollection_IDF, wordInQueries)
+wordInQueries_TFIDF = calculateTFIDF_query.calculateTFIDF_query(wordInQueries, wordInCollection_IDF)
 
-print(wordInQueries_TF)
+print(wordInQueries_TFIDF)

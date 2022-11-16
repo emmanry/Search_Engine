@@ -1,9 +1,3 @@
-from scipy.spatial import distance
-import numpy as np
-
-# { id_doc: { 'mot' : [nb_de_fois_dans_le_doc, TFIDF] ; ... } ; ...}
-# { 'This' : nb_total_de_doc_dans_lequel_il_apparait }
-
 def loadData(filename):
 	wordInDoc = {}
 	wordInCollection = {}
