@@ -30,7 +30,5 @@ def calculateTFIDF_query(wordInQuery, wordInCollection):
 			# If the word exists in the collection of documents, update the TFIDF in wordInQuery
 			if (word in wordInCollection.keys()):
 				wordInQuery[query][word][1] = TF * wordInCollection[word][1]
-			else :
-				wordInQuery[query][word][1] = TF * 0 #TODO : Comment le gérer ??
 	
 	return wordInQuery
