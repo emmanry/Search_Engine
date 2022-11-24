@@ -1,24 +1,14 @@
 from scipy.spatial import distance
 import numpy as np
 
-def scoreDocs(wordInQuery, wordInDoc):
+def scoreDocs(query_TFIDF, doc_TFIDF):
     scoreDocs = {}
-    threshold = 0.35
 
-    for (idDoc, wordDoc) in wordInDoc.items():
-        score = 0
+    for (idDoc, wordsTFIDF_doc) in doc_TFIDF.items():
+        score = distance.cosine(wordsTFIDF_doc, query_TFIDF[:len(wordsTFIDF_doc)])**2
 
-        for (word, valueQuery) in wordInQuery.items():
-            if (word in wordDoc.keys()):
-                score += distance.cosine([wordDoc[word][1]], [valueQuery[1]])**2
-            else :
-                score += valueQuery[1]
+        scoreDocs[idDoc] = np.sqrt(score)
 
-        scoreDocs[idDoc] = np.sqrt(score/len(wordInQuery))
+    scoreDocs_sorted = dict(sorted(scoreDocs.items(), key=lambda item : item[1])[:10])
 
-    scoreDocs_selected = {}
-    for doc in scoreDocs:
-        if (scoreDocs[doc] < threshold) :
-            scoreDocs_selected[doc] = scoreDocs[doc]
-
-    return dict(sorted(scoreDocs_selected.items(), key=lambda item : item[1]))
+    return scoreDocs_sorted
