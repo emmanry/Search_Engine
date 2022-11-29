@@ -1,10 +1,10 @@
 def removePunctuations(text) :
-	punctuation = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+	punctuation = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
 	
 	for character in punctuation:
 		  text = text.replace(character, '')
     
-	return text;
+	return text
 
 
 def loadDocs(filename, words):
@@ -21,13 +21,15 @@ def loadDocs(filename, words):
 			
 			while(len(tokens) != 0 and tokens[0] != ".W") :
 				i=i+1
+				tokens = lines[i].strip().split()	
 			
 			i=i+1
 			tokens = lines[i].strip().split()	
 
 			while(len(tokens) != 0 and tokens[0] != ".X") :
 
-				for j in range(len(tokens)) : 
+				for j in range(len(tokens)) :
+					tokens[j] = removePunctuations(tokens[j]) 
 					if (tokens[j] in words) : 
 						indexWord = words.index(tokens[j])
 
