@@ -18,7 +18,7 @@ wordsIDF = calculateIDF.calculateIDF(len(occurencesInDoc), occurencesInCollectio
 print('wordsIDF :', len(wordsIDF))
 
 # Calculate TFIDF for each word of data
-doc_TFIDF = calculateTFIDF_doc.calculateTFIDF_doc(wordsIDF, occurencesInDoc)
+doc_TFIDF, doc_TF = calculateTFIDF_doc.calculateTFIDF_doc(wordsIDF, occurencesInDoc)
 
 print('doc :', len(doc_TFIDF['1']))
 
