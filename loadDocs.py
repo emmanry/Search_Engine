@@ -12,7 +12,6 @@ def loadDocs(filename, words):
 			
 			while(len(tokens) != 0 and tokens[0] != ".W") :
 				i=i+1
-				tokens = lines[i].strip().split()
 			
 			i=i+1
 			tokens = lines[i].strip().split()	
