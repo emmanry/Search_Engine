@@ -4,4 +4,4 @@ def removePunctuations(text) :
 	for character in punctuation:
 		text = text.replace(character, '')
 
-	return text
+	return text.lower()

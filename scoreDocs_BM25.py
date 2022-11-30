@@ -10,7 +10,7 @@ def scoreDocs_BM25(wordsInQuery, occurencesInDoc, doc_TF, wordsIDF):
     avgdl /= nbDocs
 
     # Paramètres constants
-    k = 1.2 # doit être compris entre 1.2 et 2.0 inclus
+    k = 1.8 # doit être compris entre 1.2 et 2.0 inclus
     b = 0.75
 
     # Calcul du score BM25
@@ -18,10 +18,10 @@ def scoreDocs_BM25(wordsInQuery, occurencesInDoc, doc_TF, wordsIDF):
     for (idDoc, wordsInDoc) in occurencesInDoc.items():
         scoreDocs[idDoc] = 0
         for i in np.flatnonzero(wordsInQuery):
-            if len(doc_TF[doc]) > i:
-                scoreDocs[idDoc] += wordsIDF[i] * occurencesInDoc[doc][i] * (k+1) / (occurencesInDoc[doc][i] + k*(1 - b + b*(sum(wordsInDoc)/avgdl)))
+            if len(doc_TF[idDoc]) > i:
+                scoreDocs[idDoc] += (wordsIDF[i] * doc_TF[idDoc][i] * (k+1) / (doc_TF[idDoc][i] + k*(1 - b + b*(sum(wordsInDoc)/avgdl)))) * wordsInQuery[i]
 
     # Tri et sélection des 10 premiers
-    scoreDocs_sorted = dict(sorted(scoreDocs.items(), key=lambda item : item[1])[:10])
+    scoreDocs_sorted = dict(sorted(scoreDocs.items(), key=lambda item : item[1])[-10:])
 
     return scoreDocs_sorted
