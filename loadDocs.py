@@ -1,4 +1,4 @@
-import removePunctuations
+from removePunctuations import removePunctuations
 
 def loadDocs(filename, words):
 	occurencesInDoc = {}
@@ -36,20 +36,21 @@ def loadDocs(filename, words):
 			# Parcours de chaque mot du document
 			for j in range(len(tokens)) :
 				# Récupération du mot sans ponctuation
-				tokens[j] = removePunctuations.removePunctuations(tokens[j]) 
-				# Mise à jour des variables occurencesInDoc[idDoc] et occurencesInCollection
-				if (tokens[j] in words) : 
-					indexWord = words.index(tokens[j])
+				tokens[j] = removePunctuations(tokens[j]) 
+				for t in tokens[j]:
+					# Mise à jour des variables occurencesInDoc[idDoc] et occurencesInCollection
+					if (t in words) : 
+						indexWord = words.index(t)
 
-					if (occurencesInDoc[idDoc][indexWord] == 0) :
-						occurencesInCollection[indexWord] += 1
+						if (occurencesInDoc[idDoc][indexWord] == 0) :
+							occurencesInCollection[indexWord] += 1
 
-					occurencesInDoc[idDoc][indexWord] += 1
-				# Ajout du mot dans words, occurencesInDoc[idDoc] et occurencesInCollection
-				else : 
-					words.append(tokens[j])
-					occurencesInDoc[idDoc].append(1)
-					occurencesInCollection.append(1)
+						occurencesInDoc[idDoc][indexWord] += 1
+					# Ajout du mot dans words, occurencesInDoc[idDoc] et occurencesInCollection
+					else : 
+						words.append(t)
+						occurencesInDoc[idDoc].append(1)
+						occurencesInCollection.append(1)
 			
 			i=i+1
 			tokens = lines[i].strip().split()

@@ -1,4 +1,4 @@
-import removePunctuations
+from removePunctuations import removePunctuations
 
 def loadQueries(filename, words):
 	occurencesInQuery = {}
@@ -34,17 +34,17 @@ def loadQueries(filename, words):
 		while((len(tokens) != 0 and tokens[0] != ".I" and tokens[0] != ".B" and i < len(lines)) or len(tokens) == 0) :
 			for j in range(len(tokens)) : 
 				# Récupération du mot sans ponctuation
-				tokens[j] = removePunctuations.removePunctuations(tokens[j]) 
-				
-				# Mise à jour de occurencesInQuery[idQuery]
-				if (tokens[j] in words) : 
-					indexWord = words.index(tokens[j])
+				tokens[j] = removePunctuations(tokens[j]) 
+				for t in tokens[j]:
+					# Mise à jour de occurencesInQuery[idQuery]
+					if (t in words) : 
+						indexWord = words.index(t)
 
-					occurencesInQuery[idQuery][indexWord] += 1
-				# Ajout du mot dans words et occurencesInQuery[idQuery]
-				else : 
-					words.append(tokens[j])
-					occurencesInQuery[idQuery].append(1)
+						occurencesInQuery[idQuery][indexWord] += 1
+					# Ajout du mot dans words et occurencesInQuery[idQuery]
+					else : 
+						words.append(t)
+						occurencesInQuery[idQuery].append(1)
 
 			i=i+1
 			tokens = lines[i].strip().split()

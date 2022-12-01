@@ -2,6 +2,6 @@ def removePunctuations(text) :
 	punctuation = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
 	
 	for character in punctuation:
-		text = text.replace(character, '')
+		text = text.replace(character, ' ')
 
-	return text.lower()
+	return text.lower().strip().split()
