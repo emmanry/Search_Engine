@@ -45,11 +45,13 @@ relDocsInQuery = loadRel("CISI/CISI.REL")
 avg_analysis_TFIDF = (0, 0, 0)
 avg_analysis_BM25 = (0, 0, 0)
 
+i = 0
 print("Calcul 0 sur", len(relDocsInQuery))
 for query in relDocsInQuery:
 # for query in ["1", "2", "3"]:
     print("\033[A\033[A")
-    print("Calcul", query, "sur", len(relDocsInQuery))
+    i += 1
+    print("Calcul", i, "sur", len(relDocsInQuery))
     # Calcul des scores de chaque document pour chaque requêtes pour les 2 méthodes implémentées
     scoreDocs_Q_TFIDF = scoreDocs_TFIDF(query_TFIDF[query], doc_TFIDF)
     scoreDocs_Q_BM25 = scoreDocs_BM25(occurencesInQueries[query], occurencesInDoc, doc_TF, wordsIDF)
