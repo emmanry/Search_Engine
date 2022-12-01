@@ -33,7 +33,6 @@ def loadDocs(filename, words):
 
 		# Parcours de l'ensemble du document
 		while(len(tokens) != 0 and tokens[0] != ".X") :
-			
 			# Parcours de chaque mot du document
 			for j in range(len(tokens)) :
 				# Récupération du mot sans ponctuation

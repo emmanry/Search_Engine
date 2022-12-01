@@ -10,8 +10,8 @@ def scoreDocs_BM25(wordsInQuery, occurencesInDoc, doc_TF, wordsIDF):
     avgdl /= nbDocs
 
     # Paramètres constants
-    k = 1.8 # doit être compris entre 1.2 et 2.0 inclus
-    b = 0.75
+    k = 2.0 # doit être compris entre 1.2 et 2.0 inclus
+    b = 0.5
 
     # Calcul du score BM25
     scoreDocs = {}

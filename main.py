@@ -15,8 +15,18 @@ words = []
 # Chargement des données
 words, occurencesInDoc, occurencesInCollection, occurencesInQueries = loadData("CISI/CISI.ALL", "CISI/CISI.QRY")
 
+# print("277", sum(occurencesInDoc["277"]), occurencesInDoc["277"][4], occurencesInDoc["277"][0])
+# print("14", sum(occurencesInQueries["15"]), occurencesInQueries["15"][4], occurencesInQueries["15"][0])
+# print("words", len(words), words[2])
+# print("present", len(occurencesInCollection), sum(occurencesInCollection), sum([sum(occurencesInDoc[i]) for i in occurencesInDoc.keys()]), occurencesInCollection[3])
+
 # Calcul de l'IDF de chaque mot de la collection
 wordsIDF = calculateIDF(len(occurencesInDoc), occurencesInCollection)
+
+# print(wordsIDF[0])
+# print(np.log(len(occurencesInDoc)))
+# print(np.log(len(occurencesInDoc) / 2))
+# print(np.log(len(occurencesInDoc) / 3))
 
 # Calcul du TFIDF et du TF de chaque mot pour chaque document
 doc_TFIDF, doc_TF = calculateTFIDF_doc(wordsIDF, occurencesInDoc)
@@ -24,8 +34,8 @@ doc_TFIDF, doc_TF = calculateTFIDF_doc(wordsIDF, occurencesInDoc)
 # Calcul du TFIDF de chaque mot de chaque requête
 query_TFIDF = calculateTFIDF_query(wordsIDF, occurencesInQueries)
 
-# scoreDocs_Q_TFIDF = scoreDocs_TFIDF.scoreDocs_TFIDF(query_TFIDF['2'], doc_TFIDF)
-# scoreDocs_Q_BM25 = scoreDocs_BM25.scoreDocs_BM25(occurencesInQueries['2'], occurencesInDoc, doc_TF, wordsIDF)
+scoreDocs_Q_TFIDF = scoreDocs_TFIDF(query_TFIDF['1'], doc_TFIDF)
+scoreDocs_Q_BM25 = scoreDocs_BM25(occurencesInQueries['2'], occurencesInDoc, doc_TF, wordsIDF)
 
 ################################ STATISTIQUES ################################
 # Chargement des résultats
