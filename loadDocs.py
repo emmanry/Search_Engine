@@ -1,4 +1,5 @@
 from removePunctuations import removePunctuations
+from nltk.stem import PorterStemmer
 
 def loadDocs(filename, words):
 	occurencesInDoc = {}
@@ -38,6 +39,9 @@ def loadDocs(filename, words):
 				# Récupération du mot sans ponctuation
 				tokens[j] = removePunctuations(tokens[j]) 
 				for t in tokens[j]:
+					# Transformation du mot en sa racine
+					t = PorterStemmer().stem(t)
+
 					# Mise à jour des variables occurencesInDoc[idDoc] et occurencesInCollection
 					if (t in words) : 
 						indexWord = words.index(t)
