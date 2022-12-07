@@ -1,5 +1,6 @@
 from removePunctuations import removePunctuations
 from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
 
 def loadDocs(filename, words):
 	occurencesInDoc = {}
@@ -40,7 +41,8 @@ def loadDocs(filename, words):
 				tokens[j] = removePunctuations(tokens[j]) 
 				for t in tokens[j]:
 					# Transformation du mot en sa racine
-					t = PorterStemmer().stem(t)
+					#t = PorterStemmer().stem(t)
+					t = WordNetLemmatizer().lemmatize(t)
 
 					# Mise à jour des variables occurencesInDoc[idDoc] et occurencesInCollection
 					if (t in words) : 
