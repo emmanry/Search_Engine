@@ -1,7 +1,18 @@
 import numpy as np
 
 def scoreDocs_BM25(wordsInQuery, occurencesInDoc, doc_TF, wordsIDF):
-    
+    '''
+	Calcule les scores selon BM25 de chaque documents pour une requête
+	
+	@inputs
+		- wordsInQuery : Liste des occurences de chaque mot dans la query ;
+        - occurencesInDoc : Dictionnaire qui a pour clé l'id de chaque document et pour valeur le vecteur du nombre d'occurence de chacun des mots du document ;
+        - doc_TF : Dictionnaire qui a pour clé l'id de chaque document et pour valeur le vecteur du TF de chacun des mots du document ;
+		- wordsIDF : IDF de chaque mot de la collection.
+	
+	@output
+		- scoreDocs_sorted : Dictionnaire ayant pour clé l'id d'un document et pour valeur son score (ressort les 10 meilleurs).
+    '''
     # Calcul de la longueur moyenne des documents dans la collection
     avgdl = 0
     nbDocs = len(occurencesInDoc)

@@ -1,4 +1,14 @@
 def loadRel(filename):
+    '''
+	Charge en mémoire les résultats
+	
+	@inputs
+		- filename : chemin du document des résultats.
+	
+	@output
+		- relDocsInQuery : Dictionnaire ayant pour clé l'id d'une requête et pour valeur la liste des documents pertinents (résultats théoriques).
+    '''
+    
     relDocsInQuery = {}
 	# Lecture du fichier
     lines = open(filename, encoding="utf-8").readlines()
