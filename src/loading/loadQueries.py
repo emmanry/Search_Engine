@@ -1,4 +1,4 @@
-from removePunctuations import removePunctuations
+from loading.removePunctuations import removePunctuations
 from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 
