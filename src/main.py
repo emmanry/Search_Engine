@@ -56,8 +56,14 @@ for query in relDocsInQuery:
 
 print("\033[A\033[A")
 
-# # Calcul de la moyenne pour chaque statistiques
-avg_analysis_TFIDF = list(map(lambda x: x / len(relDocsInQuery), avg_analysis_TFIDF))
-avg_analysis_BM25 = list(map(lambda x: x / len(relDocsInQuery), avg_analysis_BM25))
+precision_TFIDF = avg_analysis_TFIDF[0] / (avg_analysis_TFIDF[0] + avg_analysis_TFIDF[1])
+recall_TFIDF = avg_analysis_TFIDF[0] / (avg_analysis_TFIDF[0] + avg_analysis_TFIDF[2])
+f_mesure_TFIDF = 2 * (precision_TFIDF*recall_TFIDF) / (precision_TFIDF + recall_TFIDF + 1e-13)
 
-print('TFIDF', avg_analysis_TFIDF, '\n BM25', avg_analysis_BM25)
+precision_BM25 = avg_analysis_BM25[0] / (avg_analysis_BM25[0] + avg_analysis_BM25[1])
+recall_BM25 = avg_analysis_BM25[0] / (avg_analysis_BM25[0] + avg_analysis_BM25[2])
+f_mesure_BM25 = 2 * (precision_BM25*recall_BM25) / (precision_BM25 + recall_BM25 + 1e-13)
+
+print('-- Résultats --\n')
+print('TFIDF : \n', '- Précision : ', precision_TFIDF, '\n - Rappel : ', recall_TFIDF, '\n - F_mesure : ', f_mesure_TFIDF)
+print('\nBM25 : \n', '- Précision : ', precision_BM25, '\n - Rappel : ', recall_BM25, '\n - F_mesure : ', f_mesure_BM25)

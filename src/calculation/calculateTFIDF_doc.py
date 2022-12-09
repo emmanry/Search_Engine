@@ -1,6 +1,18 @@
 import numpy as np
 
 def calculateTFIDF_doc(wordsIDF, occurencesInDoc):
+	'''
+	Calcule le TFIDF de chaque mot pour chaque document de la collection
+	
+	@inputs
+		- wordsIDF : IDF de chaque mot de la collection ;
+		- occurencesInDoc : Dictionnaire qui a pour clé l'id de chaque document et pour valeur le vecteur du nombre d'occurence de chacun des mots du document.
+
+	@output
+		- doc_TFIDF : Dictionnaire qui a pour clé l'id de chaque document et pour valeur le vecteur du TFIDF de chacun des mots du document ;
+		- doc_TF : Dictionnaire qui a pour clé l'id de chaque document et pour valeur le vecteur du TF de chacun des mots du document.
+	'''
+
 	doc_TFIDF = {}
 	doc_TF = {}
 

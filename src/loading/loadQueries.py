@@ -4,6 +4,17 @@ from nltk.stem import WordNetLemmatizer
 
 
 def loadQueries(filename, words):
+	'''
+	Charge en mémoire les requêtes
+	
+	@inputs
+		- filename : chemin du document de la collection de requêtes ;
+		- words : Liste de tous les mots de la collection ;
+	
+	@output
+		- words : Liste de tous les mots (collection + requêtes) ;
+		- occurencesInQueries : Dictionnaire qui a pour clé l'id de chaque requête et pour valeur le vecteur du nombre d'occurence de chacun des mots de la requête.
+	'''
 	occurencesInQuery = {}
 	# Lecture du fichier
 	lines = open(filename, encoding="utf-8").readlines()
@@ -40,9 +51,10 @@ def loadQueries(filename, words):
 				tokens[j] = removePunctuations(tokens[j]) 
 
 				for t in tokens[j]:
-					# Transformation du mot en sa racine
-					#t = PorterStemmer().stem(t)
-					t = WordNetLemmatizer().lemmatize(t)
+					# Stemming
+					t = PorterStemmer().stem(t)
+					# Lemmatisation
+					#t = WordNetLemmatizer().lemmatize(t)
 
 					# Mise à jour de occurencesInQuery[idQuery]
 					if (t in words) : 
